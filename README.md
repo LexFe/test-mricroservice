@@ -1,10 +1,10 @@
-##node starter
+## node starter
 
 ```bash
 $ npm init
 ```
 
-##install TS
+## install TS
 
 ```bash
 $ npm install --save-dev typescript @types/node @tsconfig
@@ -13,7 +13,7 @@ $ tsc --init
 ```
 setting config flie
 
-##install Eslint 
+## install Eslint 
 
 Eslint ເພືອກວດຊິນແທັກ ແລະ ຫລັການ code
  
@@ -21,7 +21,7 @@ Eslint ເພືອກວດຊິນແທັກ ແລະ ຫລັການ c
 $ npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint
 ```
 
-##install Prettier 
+## install Prettier 
 
 Prettier for  format code
 
@@ -29,13 +29,13 @@ Prettier for  format code
 $ npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint
 ```
 
-##install 
+## install 
 
 ```bash
 $ npm i
 ```
 
-##run app
+## run app
 
 ```bash
 $ npm run start

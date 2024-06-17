@@ -1,10 +1,9 @@
-import express from 'express'
-import { getAllUsersController } from '../controllers/index'
+import express from 'express';
+import { getAllUsersController ,createUserController } from '../controllers/index';
 
 const userRouter = express.Router();
 
-userRouter.get("/", getAllUsersController);
-
-console.log("test");
+userRouter.get('/', getAllUsersController);
+userRouter.post('/',createUserController );
 
 export default userRouter;

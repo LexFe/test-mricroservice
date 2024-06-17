@@ -1,34 +1,21 @@
 import { PrismaClient, User } from '@prisma/client';
-import { BaseRepository } from '../core';
+import { BaseRepository } from './BaseRepository';
 
 export class UserRepository extends BaseRepository {
-  constructor(private readonly prismaClient: PrismaClient) {
+  constructor(prismaClient: PrismaClient) {
     super(prismaClient);
   }
 
-  async createUser(email: string,  password : string): Promise<User> {
-    return this.prismaClient.user.create({
-      data: {
-        email,
-        password, 
-      },
-    });
+  async create(data: User): Promise<User> {
+    return this.prisma.user.create({ data });
   }
 
-  async getAllUsers(skip : number , take : number): Promise<User[]> {
-    return this.prismaClient.user.findMany({
+  async findAll(skip : number , take : number): Promise<User[]> {
+    return this.prisma.user.findMany({
       skip,
       take,
     });
   }
-
-//   async getUserById(id: number): Promise<User | null> {
-//     return this.prisma.user.findUnique({
-//       where: {
-//         id,
-//       },
-//     });
-//   }
 
   // Add more CRUD operations as needed
 }

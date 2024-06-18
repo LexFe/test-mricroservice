@@ -6,8 +6,12 @@ export class UserRepository extends BaseRepository {
     super(prismaClient);
   }
 
-  async create(data: User): Promise<User> {
-    return this.prisma.user.create({ data });
+  async findById(id: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
   }
 
   async findAll(skip : number , take : number): Promise<User[]> {
@@ -16,5 +20,11 @@ export class UserRepository extends BaseRepository {
       take,
     });
   }
+
+  async create(data: User): Promise<User> {
+    return this.prisma.user.create({ data });
+  }
+
+
 
 }

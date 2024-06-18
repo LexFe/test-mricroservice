@@ -10,7 +10,7 @@ const PORT = configApp.port;
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/', rootRouter);
+app.use('/api/v1', rootRouter);
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(globalErrorHanlder);

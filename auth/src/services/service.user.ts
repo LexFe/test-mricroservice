@@ -8,11 +8,15 @@ export class UserService {
     this.userRepository = new UserRepository(prismaClient);
   }
 
-    async createUser(data: User): Promise<User> {
-        return this.userRepository.create(data);
-    }
+  async getUserById(id: string): Promise<User | null> {
+    return this.userRepository.findById(id);
+  }
 
-    async getAllUsers(skip: number, take: number): Promise<User[]> {
-        return this.userRepository.findAll(skip, take);
-    }
+  async getAllUsers(skip: number, take: number): Promise<User[]> {
+    return this.userRepository.findAll(skip, take);
+  }
+
+  async createUser(data:  Omit<User, 'id'> ): Promise<User> {
+    return this.userRepository.create(data);
+  }
 }

@@ -5,6 +5,13 @@ import { z } from 'zod';
 
 const route = new TypedRoute();
 
+const querySchema = z.object({
+  skip: z.preprocess(
+    (val) => (val !== undefined ? Number(val) : 0),
+    z.number().int().nonnegative().optional()
+  ),
+});
+
 export class UserController extends BaseController {
   constructor(protected readonly service: UserService) {
     super();
@@ -12,16 +19,12 @@ export class UserController extends BaseController {
 
   getAll = route
     .get('/')
-    .params(
-      z.object({
-        skip: z.number(),
-        take: z.number(),
-      }),
-    )
-    .handler(async ({ params }) => {
-      const data = await this.service.getAllUsers(params.skip, params.take);
+    .query(querySchema)
+    .handler(async ({ query }) => {
+      const skip = query.skip || 0; 
+      const data = await this.service.getAllUsers(skip, 10);
       return {
-        data
+        data,
       };
     });
 }

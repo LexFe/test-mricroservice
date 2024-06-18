@@ -28,7 +28,6 @@ export interface HandlerMetadata {
 
 export class TypedRoute {
 
-
   get(path: string) {
     return new TypedRouteHandler(path, 'get');
   }

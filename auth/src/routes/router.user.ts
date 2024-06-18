@@ -1,9 +1,14 @@
-import express from 'express';
-import { getAllUsersController ,createUserController } from '../controllers/index';
 
-const userRouter = express.Router();
+import { Router } from "../common/helpers/router";
+import { UserController } from "../controllers";
+import { UserService } from "../services";
+import { PrismaClient } from "@prisma/client"; 
 
-userRouter.get('/', getAllUsersController);
-userRouter.post('/',createUserController );
+const userRouter = new Router(); 
+const prisma = new PrismaClient();
+const userService =  new UserService(prisma);
+const userController = new UserController(userService);
 
-export default userRouter;
+userRouter.get(userController.getAll.path, userController.getAll.handler);
+
+export default userRouter.instance;

@@ -1,25 +1,27 @@
-import { PrismaClient } from "@prisma/client";
-import { UserService } from "../services/index";
-import { RequestHandler } from "express";
+import { UserService } from '../services/index';
+import { TypedRoute } from '../common/helpers/index';
+import { BaseController } from '../common/helpers/base-controller';
+import { z } from 'zod';
 
+const route = new TypedRoute();
 
-const prisma = new PrismaClient();
-const userService :  UserService = new UserService(prisma);
+export class UserController extends BaseController {
+  constructor(protected readonly service: UserService) {
+    super();
+  }
 
-export const getAllUsersController : RequestHandler = async (req,res) => {
-    try {
-        const users = await userService.getAllUsers(0,20);
-        res.status(200).json(users);
-    } catch (error) {
-        res.status(500).send
-    }
-}
-
-export const createUserController : RequestHandler = async (req,res) => {
-    try {
-        const user = await userService.createUser(req.body);
-        res.status(201).json(user);
-    } catch (error) {
-        res.status(500).send
-    }
+  getAll = route
+    .get('/')
+    .params(
+      z.object({
+        skip: z.number(),
+        take: z.number(),
+      }),
+    )
+    .handler(async ({ params }) => {
+      const data = await this.service.getAllUsers(params.skip, params.take);
+      return {
+        data
+      };
+    });
 }

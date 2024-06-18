@@ -28,6 +28,6 @@ export function globalErrorHanlder(
       message,
       success: false,
       data: null,
-      traceStack: process.env.NODE_ENV === 'development' && error instanceof Error ? error.stack : undefined,
+      traceStack: process.env.NODE_ENV === 'dev' && error instanceof Error ? error.stack : undefined,
     });
   }

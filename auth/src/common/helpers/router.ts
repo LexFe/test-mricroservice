@@ -35,21 +35,25 @@ export class Router {
   }
 
   get(path: string, ...handlers: RequestHandler[]) {
+    console.log('Registering route', 'get', path);
     const { handler, middlewares } = this.extractHandlers(handlers);
     this.instance.route(path).get(middlewares, this.preRequest(handler));
   }
 
   post(path: string, ...handlers: RequestHandler[]) {
+    console.log('Registering route', 'post', path);
     const { handler, middlewares } = this.extractHandlers(handlers);
     this.instance.route(path).post(middlewares, this.preRequest(handler));
   }
 
   put(path: string, ...handlers: RequestHandler[]) {
+    console.log('Registering route', 'put', path);
     const { handler, middlewares } = this.extractHandlers(handlers);
     this.instance.route(path).put(middlewares, this.preRequest(handler));
   }
 
   delete(path: string, ...handlers: RequestHandler[]) {
+    console.log('Registering route', 'delete', path);
     const { handler, middlewares } = this.extractHandlers(handlers);
     this.instance.route(path).delete(middlewares, this.preRequest(handler));
   }
@@ -61,7 +65,6 @@ export class Router {
       if (route.__handlerMetadata) {
         const { path, handler } = route;
         const method = route.method.toLowerCase();
-        console.log('Registering route', method, path);
         (this.instance.route(path) as any)[method](this.preRequest(handler));
       }
     });

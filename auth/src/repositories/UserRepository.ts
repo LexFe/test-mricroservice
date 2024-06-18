@@ -17,5 +17,4 @@ export class UserRepository extends BaseRepository {
     });
   }
 
-  // Add more CRUD operations as needed
 }

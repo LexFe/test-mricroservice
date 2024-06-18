@@ -10,5 +10,7 @@ const userService =  new UserService(prisma);
 const userController = new UserController(userService);
 
 userRouter.get(userController.getAll.path, userController.getAll.handler);
+userRouter.get(userController.getById.path, userController.getById.handler);
+userRouter.post(userController.create.path, userController.create.handler);
 
 export default userRouter.instance;

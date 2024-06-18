@@ -40,7 +40,7 @@ export class UserController extends BaseController {
     create = route.post('/').body(bodySchema).handler(async ({ body }) => {
       const data = await this.service.createUser(body);
       return {
-        data,
+        data ,
       };
     });
 }

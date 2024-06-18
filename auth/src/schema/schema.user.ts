@@ -9,10 +9,6 @@ export const querySchema = z.object({
 
 
 export const bodySchema = z.object({
-  name: z.string(),
   email: z.string().email(),
   password: z.string(),
-  role : z.enum(['ADMIN', 'USER']),
-  createdAt: z.date().optional(),
-  updatedAt: z.date().optional(),
 });
